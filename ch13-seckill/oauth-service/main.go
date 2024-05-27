@@ -4,6 +4,13 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"net"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+
 	kitzipkin "github.com/go-kit/kit/tracing/zipkin"
 	localconfig "github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/config"
 	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/endpoint"
@@ -19,12 +26,6 @@ import (
 	"golang.org/x/time/rate"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
-	"net"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
 )
 
 func main() {
@@ -59,9 +60,8 @@ func main() {
 	srv = service.NewCommentService()
 
 	tokenGranter = service.NewComposeTokenGranter(map[string]service.TokenGranter{
-		"password": service.NewUsernamePasswordTokenGranter("password", userDetailsService, tokenService),
-		"refresh_token": service.NewRefreshGranter("refresh_token", userDetailsService,  tokenService),
-
+		"password":      service.NewUsernamePasswordTokenGranter("password", userDetailsService, tokenService),
+		"refresh_token": service.NewRefreshGranter("refresh_token", userDetailsService, tokenService),
 	})
 
 	tokenEndpoint := endpoint.MakeTokenEndpoint(tokenGranter, clientDetailsService)
@@ -81,16 +81,15 @@ func main() {
 	gRPCCheckTokenEndpoint = kitzipkin.TraceEndpoint(localconfig.ZipkinTracer, "grpc-check-endpoint")(gRPCCheckTokenEndpoint)
 	//tokenEndpoint = plugins.ClientAuthorizationMiddleware(clientDetailsService)(checkTokenEndpoint)
 
-
 	//创建健康检查的Endpoint
 	healthEndpoint := endpoint.MakeHealthCheckEndpoint(srv)
 	healthEndpoint = kitzipkin.TraceEndpoint(localconfig.ZipkinTracer, "health-endpoint")(healthEndpoint)
 
 	endpts := endpoint.OAuth2Endpoints{
-		TokenEndpoint:       tokenEndpoint,
-		CheckTokenEndpoint:  checkTokenEndpoint,
-		HealthCheckEndpoint: healthEndpoint,
-		GRPCCheckTokenEndpoint:gRPCCheckTokenEndpoint,
+		TokenEndpoint:          tokenEndpoint,
+		CheckTokenEndpoint:     checkTokenEndpoint,
+		HealthCheckEndpoint:    healthEndpoint,
+		GRPCCheckTokenEndpoint: gRPCCheckTokenEndpoint,
 	}
 
 	//创建http.Handler

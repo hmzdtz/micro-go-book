@@ -1,19 +1,15 @@
 package service
 
-
-
 type Service interface {
-
 	SimpleData(username string) string
 
-	AdminData(username string)  string
+	AdminData(username string) string
 
 	// HealthCheck check service health status
 	HealthCheck() bool
 }
 
 type CommonService struct {
-
 }
 
 func (s *CommonService) SimpleData(username string) string {
@@ -34,4 +30,3 @@ func (s *CommonService) HealthCheck() bool {
 func NewCommonService() *CommonService {
 	return &CommonService{}
 }
-

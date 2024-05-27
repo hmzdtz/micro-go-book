@@ -1,6 +1,5 @@
 package model
 
-
 type ClientDetails struct {
 	// client 的标识
 	ClientId string

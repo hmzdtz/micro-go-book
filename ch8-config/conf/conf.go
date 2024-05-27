@@ -3,11 +3,12 @@ package conf
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/spf13/viper"
-	_ "github.com/streadway/amqp"
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/spf13/viper"
+	_ "github.com/streadway/amqp"
 )
 
 const (

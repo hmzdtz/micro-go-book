@@ -3,20 +3,20 @@ package main
 import (
 	"errors"
 	"fmt"
-	"github.com/afex/hystrix-go/hystrix"
-	"github.com/hashicorp/consul/api"
-	"github.com/longjoy/micro-go-book/common/discover"
-	"github.com/longjoy/micro-go-book/common/loadbalance"
 	"log"
 	"net/http"
 	"net/http/httputil"
 	"strings"
 	"sync"
+
+	"github.com/afex/hystrix-go/hystrix"
+	"github.com/hashicorp/consul/api"
+	"github.com/longjoy/micro-go-book/common/discover"
+	"github.com/longjoy/micro-go-book/common/loadbalance"
 )
 
 var (
 	ErrNoInstances = errors.New("query service instance error")
-
 )
 
 type HystrixHandler struct {
@@ -26,28 +26,29 @@ type HystrixHandler struct {
 	hystrixsMutex *sync.Mutex
 
 	discoveryClient discover.DiscoveryClient
-	loadbalance loadbalance.LoadBalance
-	logger       *log.Logger
+	loadbalance     loadbalance.LoadBalance
+	logger          *log.Logger
 }
 
 func NewHystrixHandler(discoveryClient discover.DiscoveryClient, loadbalance loadbalance.LoadBalance, logger *log.Logger) *HystrixHandler {
 
 	return &HystrixHandler{
 		discoveryClient: discoveryClient,
-		logger:        	logger,
-		hystrixs:      	make(map[string]bool),
-		loadbalance:	loadbalance,
-		hystrixsMutex: 	&sync.Mutex{},
+		logger:          logger,
+		hystrixs:        make(map[string]bool),
+		loadbalance:     loadbalance,
+		hystrixsMutex:   &sync.Mutex{},
 	}
 
 }
 
 func (hystrixHandler *HystrixHandler) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-
 	reqPath := req.URL.Path
+
 	if reqPath == "" {
 		return
 	}
+
 	//按照分隔符'/'对路径进行分解，获取服务名称serviceName
 	pathArray := strings.Split(reqPath, "/")
 	serviceName := pathArray[1]
@@ -81,7 +82,7 @@ func (hystrixHandler *HystrixHandler) ServeHTTP(rw http.ResponseWriter, req *htt
 		// 使用负载均衡算法选取实例
 		selectInstance, err := hystrixHandler.loadbalance.SelectService(instanceList)
 
-		if err != nil{
+		if err != nil {
 			return ErrNoInstances
 		}
 
@@ -126,5 +127,4 @@ func (hystrixHandler *HystrixHandler) ServeHTTP(rw http.ResponseWriter, req *htt
 		rw.WriteHeader(500)
 		rw.Write([]byte(err.Error()))
 	}
-
 }

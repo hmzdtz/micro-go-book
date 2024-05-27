@@ -1,14 +1,11 @@
 package service
 
-
-
 type Service interface {
 	// HealthCheck check service health status
 	HealthCheck() bool
 }
 
 type CommentService struct {
-
 }
 
 // HealthCheck implement Service method
@@ -20,4 +17,3 @@ func (s *CommentService) HealthCheck() bool {
 func NewCommentService() *CommentService {
 	return &CommentService{}
 }
-

@@ -1,12 +1,14 @@
+//go:build go1.7
 // +build go1.7
 
 package main
 
 import (
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-go/string-services/svc2"
 	"net/http"
 	"os"
+
+	"github.com/longjoy/micro-go-book/ch12-trace/zipkin-go/string-services/svc2"
 
 	"github.com/opentracing/opentracing-go"
 
@@ -34,7 +36,7 @@ const (
 	traceID128Bit = true
 )
 
-//svc2
+// svc2
 func main() {
 	// create collector.
 	collector, err := zipkin.NewHTTPCollector(zipkinHTTPEndpoint)

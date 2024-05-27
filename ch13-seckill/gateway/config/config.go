@@ -1,10 +1,11 @@
 package config
 
 import (
+	"os"
+
 	"github.com/go-kit/kit/log"
 	conf "github.com/longjoy/micro-go-book/ch13-seckill/pkg/config"
 	"github.com/spf13/viper"
-	"os"
 )
 
 const (

@@ -2,8 +2,9 @@ package string_service
 
 import (
 	"context"
-	"github.com/go-kit/kit/log"
 	"time"
+
+	"github.com/go-kit/kit/log"
 )
 
 // loggingMiddleware Make a new type

@@ -12,16 +12,14 @@ type OAuth2Token struct {
 	TokenValue string
 	// 过期时间
 	ExpiresTime *time.Time
-
 }
 
-
-func (oauth2Token *OAuth2Token) IsExpired() bool  {
+func (oauth2Token *OAuth2Token) IsExpired() bool {
 	return oauth2Token.ExpiresTime != nil &&
 		oauth2Token.ExpiresTime.Before(time.Now())
 }
 
 type OAuth2Details struct {
 	Client *ClientDetails
-	User *UserDetails
+	User   *UserDetails
 }

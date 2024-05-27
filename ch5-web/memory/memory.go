@@ -61,7 +61,7 @@ func userInfo(w http.ResponseWriter, r *http.Request) {
 
 	for _, user := range UserByName[r.Form.Get("username")] {
 		fmt.Println(user)
-		fmt.Fprintf(w," %v",user ) //这个写入到w的是输出到客户端的
+		fmt.Fprintf(w, " %v", user) //这个写入到w的是输出到客户端的
 	}
 }
 

@@ -2,8 +2,9 @@ package loadbalance
 
 import (
 	"errors"
-	"github.com/hashicorp/consul/api"
 	"math/rand"
+
+	"github.com/hashicorp/consul/api"
 )
 
 // 负载均衡器

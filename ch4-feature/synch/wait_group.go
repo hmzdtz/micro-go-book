@@ -7,14 +7,12 @@ import (
 	"time"
 )
 
-func main()  {
-
+func main() {
 	var waitGroup sync.WaitGroup
-
 
 	waitGroup.Add(5)
 
-	for i := 0 ; i < 5 ; i++{
+	for i := 0; i < 5; i++ {
 		go func(i int) {
 			fmt.Println("work " + strconv.Itoa(i) + " is done at " + time.Now().String())
 			// 等待 1 s 后减少等待数

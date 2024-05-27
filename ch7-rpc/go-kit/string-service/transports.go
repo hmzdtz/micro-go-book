@@ -3,6 +3,7 @@ package string_service
 import (
 	"context"
 	"errors"
+
 	"github.com/go-kit/kit/transport/grpc"
 	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
 )

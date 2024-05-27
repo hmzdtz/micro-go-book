@@ -3,8 +3,9 @@ package string_service
 import (
 	"context"
 	"errors"
-	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
 	"strings"
+
+	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
 )
 
 const (
@@ -13,8 +14,7 @@ const (
 
 // Service errors
 var (
-	ErrMaxSize = errors.New("maximum size of 1024 bytes exceeded")
-
+	ErrMaxSize  = errors.New("maximum size of 1024 bytes exceeded")
 	ErrStrValue = errors.New("maximum size of 1024 bytes exceeded")
 )
 

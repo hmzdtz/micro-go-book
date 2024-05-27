@@ -3,6 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/afex/hystrix-go/hystrix"
 	"github.com/go-kit/kit/log"
 	_ "github.com/longjoy/micro-go-book/ch13-seckill/gateway/config"
@@ -12,11 +18,6 @@ import (
 	"github.com/openzipkin/zipkin-go"
 	zipkinhttpsvr "github.com/openzipkin/zipkin-go/middleware/http"
 	zipkinhttp "github.com/openzipkin/zipkin-go/reporter/http"
-	"net"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {

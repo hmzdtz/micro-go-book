@@ -30,7 +30,7 @@ type Service interface {
 	Diff(req StringRequest, ret *string) error
 }
 
-//ArithmeticService implement Service interface
+// ArithmeticService implement Service interface
 type StringService struct {
 }
 

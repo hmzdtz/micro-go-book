@@ -3,6 +3,7 @@ package plugins
 import (
 	"context"
 	"errors"
+
 	"github.com/go-kit/kit/endpoint"
 	"github.com/juju/ratelimit"
 	"golang.org/x/time/rate"

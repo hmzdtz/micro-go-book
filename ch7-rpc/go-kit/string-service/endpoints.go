@@ -3,9 +3,10 @@ package string_service
 import (
 	"context"
 	"errors"
+	"strings"
+
 	"github.com/go-kit/kit/endpoint"
 	"github.com/longjoy/micro-go-book/ch7-rpc/pb"
-	"strings"
 )
 
 // CalculateEndpoint define endpoint

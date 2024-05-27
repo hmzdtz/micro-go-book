@@ -47,9 +47,7 @@ func NewMyDiscoverClient(consulHost string, consulPort int) (DiscoveryClient, er
 	}, nil
 }
 
-
-func (consulClient *MyDiscoverClient) Register(serviceName, instanceId, healthCheckUrl string,instanceHost string, instancePort int, meta map[string]string, logger *log.Logger) bool {
-
+func (consulClient *MyDiscoverClient) Register(serviceName, instanceId, healthCheckUrl string, instanceHost string, instancePort int, meta map[string]string, logger *log.Logger) bool {
 
 	// 1.封装服务实例的元数据
 	instanceInfo := &InstanceInfo{
@@ -118,7 +116,6 @@ func (consulClient *MyDiscoverClient) DeRegister(instanceId string, logger *log.
 	}
 	return false
 }
-
 
 func (consulClient *MyDiscoverClient) DiscoverServices(serviceName string, logger *log.Logger) []interface{} {
 	// 1. 从 Consul 中获取服务实例列表

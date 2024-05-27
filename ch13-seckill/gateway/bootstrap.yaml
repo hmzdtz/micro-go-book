@@ -1,8 +1,6 @@
-
 http:
   host: 114.67.98.210
   port: 9090
-
 
 discover:
   Host: 114.67.98.210
@@ -10,7 +8,6 @@ discover:
   instanceId: gateway-service-localhost
   serviceName: gateway
   weight: 10
-
 
 config:
   id: config-service
@@ -27,8 +24,5 @@ rpc:
 
 auth:
   permitAll:
-    -
-      /oauth/**
-    -
-      /string/**
-
+    - /oauth/**
+    - /string/**

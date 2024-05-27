@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/longjoy/micro-go-book/ch7-rpc/basic/string-service"
 	"log"
 	"net/rpc"
+
+	service "github.com/longjoy/micro-go-book/ch7-rpc/basic/string-service"
 )
 
 func main() {

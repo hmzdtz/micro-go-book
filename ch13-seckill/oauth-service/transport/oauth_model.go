@@ -2,6 +2,7 @@ package transport
 
 import (
 	"context"
+
 	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/endpoint"
 	"github.com/longjoy/micro-go-book/ch13-seckill/oauth-service/model"
 	"github.com/longjoy/micro-go-book/ch13-seckill/pb"

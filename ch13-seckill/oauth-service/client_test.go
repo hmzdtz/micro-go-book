@@ -3,9 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"testing"
+
 	"github.com/longjoy/micro-go-book/ch13-seckill/pb"
 	"github.com/longjoy/micro-go-book/ch13-seckill/pkg/client"
-	"testing"
 )
 
 func TestOauthClientImpl_Check(t *testing.T) {

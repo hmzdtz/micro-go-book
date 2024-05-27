@@ -1,6 +1,5 @@
 package model
 
-
 type UserDetails struct {
 	// 用户标识
 	UserId int64

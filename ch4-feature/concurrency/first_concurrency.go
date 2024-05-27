@@ -4,22 +4,20 @@ import (
 	"fmt"
 )
 
-func setVTo1(v *int)  {
+func setVTo1(v *int) {
 
 	*v = 1
 }
 
-func setVTo2(v *int)  {
+func setVTo2(v *int) {
 	*v = 2
 }
 
-func main()  {
-
+func main() {
 	v := new(int)
 	go setVTo1(v)
 	go setVTo2(v)
 	fmt.Println(*v)
-
 
 	//go func(name string) {
 	//	fmt.Println("Hello " + name )
@@ -28,7 +26,3 @@ func main()  {
 	//time.Sleep(time.Second)
 
 }
-
-
-
-
